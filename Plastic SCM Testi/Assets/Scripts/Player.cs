@@ -8,11 +8,26 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     private int health;
+    [SerializeField] private AudioSource motorSoundEffect;
+    [SerializeField] private AudioSource shootingSoundEffect;
 
     private void Start()
     {
         UIManager.Instance.UpdatePlayerHealthUI(maxHealth);
         health = maxHealth;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            motorSoundEffect.Play();
+        }
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            shootingSoundEffect.Play();
+        }
     }
 
     //Method for taking damage
