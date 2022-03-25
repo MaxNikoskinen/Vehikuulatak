@@ -99,6 +99,7 @@ public class LevelManager : Singleton<LevelManager>
             {
                 GameManager.Instance.ShowCursor();
             }
+            UIManager.Instance.ToggleGameHud(false);
         }
         else //Tee jos skene ei ole päävalikko
         {
@@ -112,6 +113,7 @@ public class LevelManager : Singleton<LevelManager>
             {
                 GameManager.Instance.HideCursor();
             }
+            UIManager.Instance.ToggleGameHud(true);
         }
     }
 

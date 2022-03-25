@@ -6,11 +6,11 @@ public class BulletPlayer : MonoBehaviour
 {
     [SerializeField] private int damage = 10;
     private Enemy enemyScript;
-    private Player playerScript;
+
 
     private void Start()
     {
-        playerScript = GameManager.Instance.player.GetComponent<Player>();
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

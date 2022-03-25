@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-//        UIManager.Instance.UpdatePlayerHealthUI(maxHealth);
+        UIManager.Instance.UpdateHealthText(maxHealth);
         health = maxHealth;
         GameManager.Instance.player = this.gameObject;
     }
@@ -20,10 +20,10 @@ public class Player : MonoBehaviour
     public void TakeDamage(int amount)
     {
         health -= amount;
-//        UIManager.Instance.UpdatePlayerHealthUI(health);
+        UIManager.Instance.UpdateHealthText(health);
         if (health <= 0)
         {
-//            UIManager.Instance.UpdatePlayerHealthUI(0);
+            UIManager.Instance.UpdateHealthText(0);
             GameManager.Instance.player = null; //Put to gamemanager that the player doesn't exist to prevent nre
             Die();
         }

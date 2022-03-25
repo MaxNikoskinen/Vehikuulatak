@@ -14,6 +14,7 @@ public class CameraFollow : MonoBehaviour
     private void Start()
     {
         offset = transform.position - objectToFollow.transform.position;
+        
     }
 
     //Moves the camera to the location of the player
@@ -21,10 +22,9 @@ public class CameraFollow : MonoBehaviour
     {
         player = GameManager.Instance.player;
 
-        /* if (player != null) //miks t‰‰ kuseee?? jos tapan vihollisen niin kamera ei liiku en‰‰. mit‰?? ei mit‰‰n j‰rke‰..
-         {*/
-
-        transform.position = objectToFollow.transform.position + offset;
-     //   }
+        if (player != null)
+        {
+             transform.position = objectToFollow.transform.position + offset;
+        }
     }
 }

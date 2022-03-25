@@ -22,6 +22,9 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private TMP_Text noSceneWarningText;
     [SerializeField] private GameObject noSceneWarning;
     [SerializeField] private TMP_Text loadedSceneText;
+    [SerializeField] private GameObject gameHud;
+    [SerializeField] private TMP_Text healthText;
+    [SerializeField] private TMP_Text scoreText;
 
     private void Update()
     {
@@ -114,6 +117,24 @@ public class UIManager : Singleton<UIManager>
     public void UpdateLoadedSceneText(string name)
     {
         loadedSceneText.text = "Ladattu skene: " + name;
+    }
+
+    //
+    public void ToggleGameHud(bool value)
+    {
+        gameHud.SetActive(value);
+    }
+
+    //
+    public void UpdateScoreText(int value)
+    {
+        scoreText.text = value.ToString();
+    }
+
+    //
+    public void UpdateHealthText(int value)
+    {
+        healthText.text = value + " %";
     }
 }
 
