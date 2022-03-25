@@ -24698,6 +24698,14 @@ MonoBehaviour:
     Scene:
       sceneAsset: {fileID: 102900000, guid: 1b51137a443199c47b345d99f0a18ed8, type: 3}
       scenePath: Assets/Scenes/Max1.unity
+  - LevelName: Testi
+    Scene:
+      sceneAsset: {fileID: 102900000, guid: aeff2c505d10c2546839e548e42b2de2, type: 3}
+      scenePath: Assets/Scenes/Testi.unity
+  - LevelName: Max 2
+    Scene:
+      sceneAsset: {fileID: 102900000, guid: 80ccca54181e7a940beb9d57831597fd, type: 3}
+      scenePath: Assets/Scenes/Max2.unity
 --- !u!114 &7825485195516576390
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Max1.unity
     guid: 1b51137a443199c47b345d99f0a18ed8
+  - enabled: 1
+    path: Assets/Scenes/Testi.unity
+    guid: aeff2c505d10c2546839e548e42b2de2
+  - enabled: 1
+    path: Assets/Scenes/Max2.unity
+    guid: 80ccca54181e7a940beb9d57831597fd
   m_configObjects: {}
