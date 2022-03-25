@@ -5585,8 +5585,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 90, y: -350}
-  m_SizeDelta: {x: 420, y: 600}
+  m_AnchoredPosition: {x: 520.20197, y: -350}
+  m_SizeDelta: {x: 1280.403, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1828049406
 CanvasRenderer:
@@ -24686,6 +24686,10 @@ MonoBehaviour:
     Scene:
       sceneAsset: {fileID: 102900000, guid: 6923754bf9484c7478098446e7d1a94b, type: 3}
       scenePath: Assets/Scenes/Level1.unity
+  - LevelName: Testi
+    Scene:
+      sceneAsset: {fileID: 102900000, guid: aeff2c505d10c2546839e548e42b2de2, type: 3}
+      scenePath: Assets/Scenes/Testi.unity
   - LevelName: Test Level
     Scene:
       sceneAsset: {fileID: 102900000, guid: 914d114c92793f242ad2297c14e83104, type: 3}
@@ -24698,10 +24702,6 @@ MonoBehaviour:
     Scene:
       sceneAsset: {fileID: 102900000, guid: 1b51137a443199c47b345d99f0a18ed8, type: 3}
       scenePath: Assets/Scenes/Max1.unity
-  - LevelName: Testi
-    Scene:
-      sceneAsset: {fileID: 102900000, guid: aeff2c505d10c2546839e548e42b2de2, type: 3}
-      scenePath: Assets/Scenes/Testi.unity
   - LevelName: Max 2
     Scene:
       sceneAsset: {fileID: 102900000, guid: 80ccca54181e7a940beb9d57831597fd, type: 3}

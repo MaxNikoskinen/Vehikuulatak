@@ -39,7 +39,7 @@ public class LevelManager : Singleton<LevelManager>
         UIManager.Instance.UpdateSceneList("");
         foreach (LevelData data in Levels)
         {
-            sceneList += ", " + data.LevelName;
+            sceneList += "\n" + data.LevelName;
         }
         UIManager.Instance.UpdateSceneList(MainMenu.LevelName + sceneList);
     }
