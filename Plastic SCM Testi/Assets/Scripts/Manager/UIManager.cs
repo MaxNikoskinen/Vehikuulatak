@@ -14,11 +14,14 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private TMP_InputField SceneInputField;
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject mainMenuScreen;
-    [SerializeField] private GameObject gameHud;
-    [SerializeField] private TMP_Text scoreText;
-    [SerializeField] private TMP_Text carConditionText;
-    [SerializeField] private GameObject playGameScreen;
-    private GameObject player;
+    [SerializeField] private GameObject settingsScreen;
+    [SerializeField] private GameObject backToMenuScreen;
+    [SerializeField] private GameObject guideScreen;
+    [SerializeField] private GameObject quitGameScreen;
+    [SerializeField] private GameObject sceneLoadingScreen;
+    [SerializeField] private TMP_Text noSceneWarningText;
+    [SerializeField] private GameObject noSceneWarning;
+    [SerializeField] private TMP_Text loadedSceneText;
 
     private void Update()
     {
@@ -29,6 +32,19 @@ public class UIManager : Singleton<UIManager>
             SceneInputField.text = "";
             SceneInputField.Select();
             SceneInputField.ActivateInputField();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (LevelManager.Instance.MenuDetect())
+            {
+                mainMenuScreen.SetActive(true);
+                settingsScreen.SetActive(false);
+                guideScreen.SetActive(false);
+                quitGameScreen.SetActive(false);
+            }
+            sceneLoadingScreen.SetActive(false);
+            ToggleCanLoad(false);
         }
     }
 
@@ -56,27 +72,48 @@ public class UIManager : Singleton<UIManager>
         mainMenuScreen.SetActive(value);
     }
 
-    //Toggles game hud
-    public void ToggleGameHud(bool value)
+    //
+    public void ToggleSettingsScreen(bool value)
     {
-        gameHud.SetActive(value);
+        settingsScreen.SetActive(value);
     }
 
-    //Update player health in hud
-    public void UpdatePlayerHealthUI(int amount)
+    //
+    public void ToggleBackToMenuScreen(bool value)
     {
-        player = GameManager.Instance.GetPlayer();
+        backToMenuScreen.SetActive(value);
+    }
 
-        if(player != null)
+    //
+    public void ToggleGuideScreen(bool value)
+    {
+        guideScreen.SetActive(value);
+    }
+
+    //
+    public void BackToMenu()
+    {
+        if(LevelManager.Instance.MenuDetect())
         {
-            carConditionText.text = amount + "%";
+            mainMenuScreen.SetActive(true);
+        }
+        else
+        {
+            pauseScreen.SetActive(true);
         }
     }
 
-    //Toggles game hud
-    public void TogglePlayGameScreen(bool value)
+    //
+    public void WarnIfNoScene(string name)
     {
-        playGameScreen.SetActive(value);
+        noSceneWarning.SetActive(true);
+        noSceneWarningText.text = "Skeneä \"" + name + "\" ei ole olemassa";
+    }
+
+    //
+    public void UpdateLoadedSceneText(string name)
+    {
+        loadedSceneText.text = "Ladattu skene: " + name;
     }
 }
 

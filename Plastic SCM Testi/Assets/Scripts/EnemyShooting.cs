@@ -17,7 +17,7 @@ public class EnemyShooting : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Transform>();
-        playerScript = GameManager.Instance.GetPlayerScript();
+        playerScript = GameManager.Instance.player.GetComponent<Player>();
     }
 
     private void Update()

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 
-//Sound effect scrip for audiomanager
+//Ääniefekti skripti audiomanageriin
 
 [System.Serializable]
 public class SoundEffect

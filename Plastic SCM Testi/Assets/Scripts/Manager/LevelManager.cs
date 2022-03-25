@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
-//Allows easy switching between scenes and other scene related stuff
+//Sallii vaihtamisen skenejen välillä helposti
 
 [RequireComponent(typeof(DontDestroyOnLoad))]
 public class LevelManager : Singleton<LevelManager>
@@ -21,78 +19,105 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private LevelData MainMenu;
     [SerializeField] private List<LevelData> Levels = new List<LevelData>();
 
+    private bool isInMenu;
+
     void Start()
     {
         SceneManager.sceneLoaded += OnLevelLoaded;
 
-        //If main menu scene is not set, alert to console
+        //Jos päävalikkoaskeneä ei ole asetettu, laita ilmoitus konsoliin
         if (MainMenu.Scene == null) 
         {
             Debug.LogWarning("No main menu detected");
             return;
         }
 
-        //Loads to main menu when game starts
+        //Lataa päävalikon, kun peli käynnistyy
         LoadMainMenu();
 
-        //Shows scenes in scene loading screen
+        //Näyttää skenet skenenlatausruudussa
         UIManager.Instance.UpdateSceneList("");
         foreach (LevelData data in Levels)
         {
-            sceneList += ", " + data.LevelName.ToString();
+            sceneList += ", " + data.LevelName;
         }
-        UIManager.Instance.UpdateSceneList("Main Menu" + sceneList);
+        UIManager.Instance.UpdateSceneList(MainMenu.LevelName + sceneList);
     }
     
-    //Load scene with it's assigned name
+    //Lataa skene kirjoittamalla sille levelmanageriin asetettu nimi
     public void LoadLevel(string name)
     {
         foreach (LevelData data in Levels)
         {
-            if(data.LevelName.Equals(name))
+            if (data.LevelName.Equals(name))
             {
                 SceneManager.LoadScene(data.Scene);
+                UIManager.Instance.UpdateLoadedSceneText(name);
                 return;
             }
-            if(name == "Main Menu")
-            {
-                LoadMainMenu();
-            }
+        }
+
+        if (name.Equals(MainMenu.LevelName))
+        {
+            LoadMainMenu();
+        }
+        else if (name == "")
+        {
+            return;
+        }
+        else
+        {
+            Debug.Log("Scene \"" + name + "\" doesn't exist in the level manager");
+            UIManager.Instance.WarnIfNoScene(name);
         }
     }
 
-    //Method for loading main menu
+    //Metodi jolla ladataan päävalikko
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(MainMenu.Scene);
+        UIManager.Instance.UpdateLoadedSceneText(MainMenu.LevelName);
     }
 
-    //Load scene with scene reference
-    public void LoadLevel(SceneReference scene)
-    {
-        SceneManager.LoadScene(scene);
-    }
-
-    //Event to know when scene is loaded
+    //Eventti jolla voi tietää kun skene ladataan
     void OnLevelLoaded(Scene scene, LoadSceneMode mode)
     {
-        //Do if in main menu
+        //Tee jos skene on päävalikko
         if (scene.path == MainMenu.Scene.ScenePath)
         {
             GameManager.Instance.ToggleCanPause(false);
+
             UIManager.Instance.ToggleMainMenuScreen(true);
-            UIManager.Instance.ToggleGameHud(false);
-            GameManager.Instance.FindPlayer(false);
-            GameManager.Instance.FindPlayerScript(false);
+
+            if(GameManager.Instance.GetIsPaused())
+            {
+                GameManager.Instance.ResumeGame();
+            }
+            isInMenu = true;
+
+            if (GameManager.Instance.GetIs3d())
+            {
+                GameManager.Instance.ShowCursor();
+            }
         }
-        else //Do if not in main menu
+        else //Tee jos skene ei ole päävalikko
         {
             GameManager.Instance.ToggleCanPause(true);
+
             UIManager.Instance.ToggleMainMenuScreen(false);
-            UIManager.Instance.ToggleGameHud(true);
-            GameManager.Instance.FindPlayer(true);
-            GameManager.Instance.FindPlayerScript(true);
-            UIManager.Instance.TogglePlayGameScreen(false);
+
+            isInMenu = false;
+
+            if(GameManager.Instance.GetIs3d())
+            {
+                GameManager.Instance.HideCursor();
+            }
         }
+    }
+
+    //
+    public bool MenuDetect()
+    {
+        return isInMenu;
     }
 }

@@ -19,12 +19,12 @@ public class CameraFollow : MonoBehaviour
     //Moves the camera to the location of the player
     private void Update()
     {
-        player = GameManager.Instance.GetPlayer();
+        player = GameManager.Instance.player;
 
-       /* if (player != null) //miks t‰‰ kuseee?? jos tapan vihollisen niin kamera ei liiku en‰‰. mit‰?? ei mit‰‰n j‰rke‰..
-        {*/
+        /* if (player != null) //miks t‰‰ kuseee?? jos tapan vihollisen niin kamera ei liiku en‰‰. mit‰?? ei mit‰‰n j‰rke‰..
+         {*/
 
-            transform.position = objectToFollow.transform.position + offset;
+        transform.position = objectToFollow.transform.position + offset;
      //   }
     }
 }

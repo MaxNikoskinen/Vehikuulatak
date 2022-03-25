@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-//Stops game objects from getting destroyed on scene change
+//Estää ettei gameobject tuhoudu skenen vaihdossa
 
 public class DontDestroyOnLoad : MonoBehaviour
 {

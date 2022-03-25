@@ -2,39 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Contains stuff about common things in the game, like money and player references
+// Sisältää asioita pelissä yleisesti käytettäviin asioihin esim. pelaaja ja rahamäärä
 
 [RequireComponent(typeof(DontDestroyOnLoad))]
 public class GameManager : Singleton<GameManager>
 {
-    //Method that can be used to close the game
+    [SerializeField] private bool is3d;
+
+    private GameObject playerReference;
+
+    //Poistu pelistä metodi, sulkee pelin
     public void ExitGame()
     {
         #if UNITY_EDITOR
+        {
             UnityEditor.EditorApplication.isPlaying = false;
-
+        }
         #else
-	    	Application.Quit();
-
+        {
+            Application.Quit();
+        }
         #endif
     }
 
-    private GameObject player;
-    private Player playerScript;
-
     private bool isPaused;
     private bool canPause;
+    private int randomValue;
+
+    private void Start()
+    {
+        randomValue = Random.Range(0, 10000);
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
-            //If game is paused
+            //Jos peli on pysäytetty
             if (isPaused)
             {
                 ResumeGame();
             }
-            //If game is not paused
+            //Jos peliä ei ole pysäytetty
             else
             {
                 PauseTheGame();
@@ -42,63 +51,78 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    //Stop game
+    //Pysäytä peli
     public void PauseTheGame()
     {
         isPaused = true;
         UIManager.Instance.TogglePauseScreen(true);
+        if (is3d)
+        {
+            ShowCursor();
+        }
+        Time.timeScale = 0;
+        Debug.Log("pysäytetty");
     }
 
-    //Continue game
+    //Jatka peliä
     public void ResumeGame()
     {
         isPaused = false;
         UIManager.Instance.TogglePauseScreen(false);
+        UIManager.Instance.ToggleSettingsScreen(false);
+        UIManager.Instance.ToggleBackToMenuScreen(false);
+        UIManager.Instance.ToggleGuideScreen(false);
+        if(is3d)
+        {
+            HideCursor();
+        }
+        Time.timeScale = 1;
+        Debug.Log("jatkettu");
     }
 
-    //Is the player in main menu?
+    //Onko pelaaja päävalikossa vai ei
     public void ToggleCanPause(bool value)
     {
         canPause = value;
     }
 
-    //Find player from scene and assign it to reference
-    public void FindPlayer(bool find)
+    public void ShowCursor()
     {
-        if(find)
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void HideCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public int GetRandomValue()
+    {
+        return randomValue;
+    }
+
+    public GameObject player
+    {
+        get
         {
-            player = GameObject.FindGameObjectWithTag("Player");
-            Debug.Log("Pelaaja: " + player);
+            return playerReference;
         }
-        else
+        set
         {
-            player = null;
+            playerReference = value;
+            Debug.Log("Player added to gamemanager", value);
         }
     }
 
-    //Get player reference
-    public GameObject GetPlayer()
+    public bool GetIsPaused()
     {
-        return player;
+        return isPaused;
     }
 
-    //Find player from scene and assign it to reference
-    public void FindPlayerScript(bool find)
+    public bool GetIs3d()
     {
-        if (find)
-        {
-            playerScript = FindObjectOfType<Player>();
-            Debug.Log("Pelaajaskripti: " + playerScript);
-        }
-        else
-        {
-            player = null;
-        }
-    }
-
-    //Get player reference
-    public Player GetPlayerScript()
-    {
-        return playerScript;
+        return is3d;
     }
 }

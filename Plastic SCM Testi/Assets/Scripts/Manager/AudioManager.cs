@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-//Class for playing sound and music
+//Luokka äänentoistoon
 
 public class AudioManager : Singleton<AudioManager>
 {
@@ -21,45 +21,45 @@ public class AudioManager : Singleton<AudioManager>
         AS = GetComponent<AudioSource>();
     }
 
-    //Play music when game starts
+    //Soita aloitus musiikki kun peli käynnistyy
     private void Start()
     {
         PlayMusicTrack(StartingMusic);
     }
 
-    //Change audiomixer volume
+    //Vaihda audiomikserin äänenvoimakkuutta
     public void ChangeMixerGroupVolume(string group, float volume)
     {
         Mixer.SetFloat(group, volume);
     }
 
-    //Plays some sound effect only once with given sound effect data and data volume is added to audiosource
+    // Toistaa jonkin ääni effektin vain kerran annetulla SoundEffect datalla, ja datan äänenvoimakkuus lisätään audiosourceen
     public void PlayClipOnce(SoundEffect effect)
     {
         AS.outputAudioMixerGroup = effect.Mixer;
         AS.PlayOneShot(effect.GetClip(), effect.volume);
     }
 
-    //Plays some sound effect only one with given sound effect data, from given gameobject audiosource
+    // Toistaa jonkin ääni effektin vain kerran annetulla SoundEffect datalla, annetun GameObjektin AudioSourcesta
     public void PlayClipOnce(SoundEffect effect, GameObject source)
     {
-        // Search source from GameObject "AudioSource"
+        // Hae source -GameObjectista "AudioSource"
         AudioSource SourceAS = source.GetComponent<AudioSource>();
 
-        //If audio source component doesn't exist in "source" objektive, create audiosource component for it
+        // Mikäli AudioSource komponenttia ei ole olemassa "source" objektissa, luo AudioSource komponentti sille
         if (SourceAS == null)
             SourceAS = source.AddComponent<AudioSource>();
 
         SourceAS.outputAudioMixerGroup = effect.Mixer;
 
-        //Set gameobjects audiosource spatialblend to same of "effect"
+        // Aseta GameObjektin AudioSourcelle spatialBlend samaan, mitä "effect":tiin on asetettu
         SourceAS.spatialBlend = effect.spatialBlend;
 
-        //Play sound effect source from gameobjects audiosource component
+        // Toista ääni effekti source - GameObjektin AudioSource komponentista
         SourceAS.PlayOneShot(effect.GetClip(), effect.volume);
     }
 
-    //Method that plays music
+    //Metodi joka soittaa musiikkia
     public void PlayMusicTrack(SoundEffect track)
     {
         MusicAS.outputAudioMixerGroup = track.Mixer;

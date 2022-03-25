@@ -15,8 +15,8 @@ public class EnemyMelee : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.Instance.GetPlayer();
-        playerScript = GameManager.Instance.GetPlayerScript();
+        player = GameManager.Instance.player;
+        playerScript = GameManager.Instance.player.GetComponent<Player>();
     }
 
     //Deals damage to player if the player touches the enemy

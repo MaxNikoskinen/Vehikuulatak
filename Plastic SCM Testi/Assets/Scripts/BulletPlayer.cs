@@ -10,7 +10,7 @@ public class BulletPlayer : MonoBehaviour
 
     private void Start()
     {
-        playerScript = GameManager.Instance.GetPlayerScript();
+        playerScript = GameManager.Instance.player.GetComponent<Player>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
