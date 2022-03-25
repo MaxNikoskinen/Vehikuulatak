@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class audioScript : MonoBehaviour
 {
-    [SerializeField] AudioSource ‰‰ni;
+    [SerializeField] AudioSource source;
+    [SerializeField] AudioClip clip;
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
         {
-            ‰‰ni.Play();
+            source.PlayOneShot(clip);
         }
-        else
-        {
-            ‰‰ni.Stop();
-        }
+       
 
     }
 

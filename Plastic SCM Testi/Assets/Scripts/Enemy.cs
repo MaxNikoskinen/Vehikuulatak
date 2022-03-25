@@ -6,13 +6,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private int health = 35;
+    public int health = 100;
 
-    private void Update()
-    {
-        
-    }
-
+    
     public void TakeDamage(int amount)
     {
         health -= amount;
