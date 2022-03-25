@@ -24694,6 +24694,10 @@ MonoBehaviour:
     Scene:
       sceneAsset: {fileID: 102900000, guid: bdf7ab4e466c6384ebf1e40750e7b759, type: 3}
       scenePath: Assets/Scenes/Test Level 2.unity
+  - LevelName: Max 1
+    Scene:
+      sceneAsset: {fileID: 102900000, guid: 1b51137a443199c47b345d99f0a18ed8, type: 3}
+      scenePath: Assets/Scenes/Max1.unity
 --- !u!114 &7825485195516576390
 MonoBehaviour:
   m_ObjectHideFlags: 0

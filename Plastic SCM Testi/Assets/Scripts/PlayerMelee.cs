@@ -22,8 +22,11 @@ public class PlayerMelee : MonoBehaviour
     {
         if(dealDamage && Time.time >= damageDelay)
         {
+            if(enemyScript != null)
+            {
+                enemyScript.TakeDamage(damage);
+            }
             
-            enemyScript.TakeDamage(damage);
             damageDelay = Time.time + 1f / attackSpeed;
         }
     }
