@@ -294,20 +294,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
       propertyPath: Levels.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
       propertyPath: Levels.Array.data[2].LevelName
       value: Level1
       objectReference: {fileID: 0}
     - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
+      propertyPath: Levels.Array.data[3].LevelName
+      value: Testi
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
       propertyPath: Levels.Array.data[2].Scene.scenePath
       value: Assets/Scenes/Level1.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
+      propertyPath: Levels.Array.data[3].Scene.scenePath
+      value: Assets/Scenes/Testi.unity
       objectReference: {fileID: 0}
     - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
       propertyPath: Levels.Array.data[2].Scene.sceneAsset
       value: 
       objectReference: {fileID: 102900000, guid: 6923754bf9484c7478098446e7d1a94b, type: 3}
+    - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
+      propertyPath: Levels.Array.data[3].Scene.sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: aeff2c505d10c2546839e548e42b2de2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
 --- !u!1001 &2878679956369948382
