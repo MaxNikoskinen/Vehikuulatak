@@ -4,48 +4,21 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Transform firePoint;
-    public int damage = 40;
-    //public GameObject impactEffect;
-    public LineRenderer lineRenderer;
+    public float offset;
+
+    public GameObject projectile;
+    public Transform shotPoint;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKey(KeyCode.Z))
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotz + offset);
+
+        if (Input.GetMouseButtonDown(0))
         {
-           StartCoroutine (Shoot());
+            Instantiate(projectile, shotPoint.position, transform.rotation);
         }
-        
-    }
-
-    IEnumerator Shoot ()
-    {
-        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
-
-        if (hitInfo)
-        {
-            Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-            }
-
-           // Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
-
-            lineRenderer.SetPosition(0, firePoint.position);
-            lineRenderer.SetPosition(1, hitInfo.point);
-        }  else
-        {
-            lineRenderer.SetPosition(0, firePoint.position);
-            lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
-        }
-
-        lineRenderer.enabled = true;
-
-        yield return new WaitForSeconds(0.02f);
-
-        lineRenderer.enabled = false;
-        
     }
 }
