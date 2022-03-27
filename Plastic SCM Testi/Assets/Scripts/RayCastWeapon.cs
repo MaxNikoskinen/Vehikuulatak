@@ -6,7 +6,7 @@ public class RayCastWeapon : MonoBehaviour
 {
     public Transform firePoint;
     public int damage = 40;
-    //public GameObject impactEffect;
+    public GameObject impactEffect;
     public LineRenderer lineRenderer;
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class RayCastWeapon : MonoBehaviour
                 enemy.TakeDamage(damage);
             }
 
-           // Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
+            Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
 
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, hitInfo.point);

@@ -4,21 +4,39 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+
     public float offset;
 
     public GameObject projectile;
+    public GameObject shotEffect;
     public Transform shotPoint;
+    public Animator camAnim;
 
-    // Update is called once per frame
-    private void Update()
+    private float timeBtwShots;
+    public float startTimeBtwShots;
+
+    void Update()
     {
+        // Handles the weapon rotation
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotz + offset);
+        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
 
-        if (Input.GetMouseButtonDown(0))
+        if (timeBtwShots <= 0)
         {
-            Instantiate(projectile, shotPoint.position, transform.rotation);
+            if (Input.GetMouseButton(0))
+            {
+                Instantiate(shotEffect, shotPoint.position, Quaternion.identity);
+                camAnim.SetTrigger("shake");
+                Instantiate(projectile, shotPoint.position, transform.rotation);
+                timeBtwShots = startTimeBtwShots;
+            }
         }
+        else
+        {
+            timeBtwShots -= Time.deltaTime;
+        }
+
+
     }
 }
