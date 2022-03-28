@@ -4,48 +4,39 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Transform firePoint;
-    public int damage = 40;
-    //public GameObject impactEffect;
-    public LineRenderer lineRenderer;
 
-    // Update is called once per frame
+    public float offset;
+
+    public GameObject projectile;
+    public GameObject shotEffect;
+    public Transform shotPoint;
+    public Animator camAnim;
+
+    private float timeBtwShots;
+    public float startTimeBtwShots;
+
     void Update()
     {
-        if (Input.GetKey(KeyCode.Z))
-        {
-           StartCoroutine (Shoot());
-        }
-        
-    }
+        // Handles the weapon rotation
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
 
-    IEnumerator Shoot ()
-    {
-        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
-
-        if (hitInfo)
+        if (timeBtwShots <= 0)
         {
-            Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
-            if (enemy != null)
+            if (Input.GetMouseButton(0))
             {
-                enemy.TakeDamage(damage);
+                Instantiate(shotEffect, shotPoint.position, Quaternion.identity);
+                camAnim.SetTrigger("shake");
+                Instantiate(projectile, shotPoint.position, transform.rotation);
+                timeBtwShots = startTimeBtwShots;
             }
-
-           // Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
-
-            lineRenderer.SetPosition(0, firePoint.position);
-            lineRenderer.SetPosition(1, hitInfo.point);
-        }  else
+        }
+        else
         {
-            lineRenderer.SetPosition(0, firePoint.position);
-            lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
+            timeBtwShots -= Time.deltaTime;
         }
 
-        lineRenderer.enabled = true;
 
-        yield return new WaitForSeconds(0.02f);
-
-        lineRenderer.enabled = false;
-        
     }
 }
