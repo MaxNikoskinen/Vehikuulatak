@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     {
         UIManager.Instance.UpdatePlayerHealthUI(maxHealth);
         health = maxHealth;
+
     }
 
     private void Update()

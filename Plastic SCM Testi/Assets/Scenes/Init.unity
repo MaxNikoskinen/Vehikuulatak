@@ -294,7 +294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
       propertyPath: Levels.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
       propertyPath: Levels.Array.data[2].LevelName
@@ -302,7 +302,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
       propertyPath: Levels.Array.data[3].LevelName
-      value: Testi
+      value: FirstLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
+      propertyPath: Levels.Array.data[4].LevelName
+      value: SecondLevel
       objectReference: {fileID: 0}
     - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
       propertyPath: Levels.Array.data[2].Scene.scenePath
@@ -310,7 +314,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
       propertyPath: Levels.Array.data[3].Scene.scenePath
-      value: Assets/Scenes/Testi.unity
+      value: Assets/Scenes/FirstLevel.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
+      propertyPath: Levels.Array.data[4].Scene.scenePath
+      value: Assets/Scenes/SecondLevel.unity
       objectReference: {fileID: 0}
     - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
       propertyPath: Levels.Array.data[2].Scene.sceneAsset
@@ -320,6 +328,10 @@ PrefabInstance:
       propertyPath: Levels.Array.data[3].Scene.sceneAsset
       value: 
       objectReference: {fileID: 102900000, guid: aeff2c505d10c2546839e548e42b2de2, type: 3}
+    - target: {fileID: 9131025800877052960, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
+      propertyPath: Levels.Array.data[4].Scene.sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: e90cbff3b7b033649bf6d03651a4af69, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66a97eb8f9a0fd54fbe11dae061535a1, type: 3}
 --- !u!1001 &2878679956369948382
@@ -333,6 +345,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7698430130368059950}
+    - target: {fileID: 1651931186029689936, guid: 941fd4a5acdb26c4a8868f154c68e81b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: FirstLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 2878679955985584563, guid: 941fd4a5acdb26c4a8868f154c68e81b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
