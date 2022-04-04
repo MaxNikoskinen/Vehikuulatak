@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sound Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 636737069310657599, guid: db6cf6e48735d1e44b4e7e7ddd72e303, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1840282220149070744, guid: db6cf6e48735d1e44b4e7e7ddd72e303, type: 3}
+      propertyPath: StartingMusic.volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db6cf6e48735d1e44b4e7e7ddd72e303, type: 3}
 --- !u!1001 &857363956296941809
@@ -551,6 +559,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3216511648688255682, guid: 941fd4a5acdb26c4a8868f154c68e81b, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8167134753309803351, guid: 941fd4a5acdb26c4a8868f154c68e81b, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

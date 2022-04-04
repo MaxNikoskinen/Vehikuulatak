@@ -8,12 +8,9 @@ public class LoadLevel : MonoBehaviour
     public Animator transitionAnim;
     public string sceneName;
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(LoadScene());
-        }
+        StartCoroutine(LoadScene());
     }
     IEnumerator LoadScene()
     {

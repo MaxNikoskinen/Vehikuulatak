@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Script that handles the player, health and stuff like that
 
@@ -47,8 +48,8 @@ public class Player : MonoBehaviour
     //Method for dying
     public void Die()
     {
-    
+        SceneManager.LoadScene("DeathScene");
         Destroy(gameObject);
     }
-
+    
 }

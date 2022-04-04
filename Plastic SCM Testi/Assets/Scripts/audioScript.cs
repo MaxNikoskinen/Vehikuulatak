@@ -7,14 +7,13 @@ public class audioScript : MonoBehaviour
     [SerializeField] AudioSource source;
     [SerializeField] AudioClip clip;
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
         {
             source.PlayOneShot(clip);
         }
        
-
     }
 
 }
