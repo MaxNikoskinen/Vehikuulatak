@@ -25,6 +25,10 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject gameHud;
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private GameObject playGameScreen;
+    [SerializeField] private TMP_Text speedText;
+    [SerializeField] private TMP_Text moneyText;
+    [SerializeField] private TMP_Text damageText;
 
     private void Update()
     {
@@ -135,6 +139,27 @@ public class UIManager : Singleton<UIManager>
     public void UpdateHealthText(int value)
     {
         healthText.text = value + " %";
+    }
+
+    //
+    public void TogglePlaygameScreen(bool value)
+    {
+        playGameScreen.SetActive(value);
+    }
+
+    public void UpdateSpeedText(float value)
+    {
+        speedText.text = "Nopeus: " + value.ToString() + " / 10";
+    }
+
+    public void UpdateDamageText(int value)
+    {
+        damageText.text = "Vahinko: " + value.ToString() + " / 100";
+    }
+
+    public void UpdateMoneyText(float value)
+    {
+        moneyText.text = "Rahaa: " + value.ToString();
     }
 }
 

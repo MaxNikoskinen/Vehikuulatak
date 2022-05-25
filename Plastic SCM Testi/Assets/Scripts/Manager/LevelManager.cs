@@ -114,6 +114,8 @@ public class LevelManager : Singleton<LevelManager>
                 GameManager.Instance.HideCursor();
             }
             UIManager.Instance.ToggleGameHud(true);
+
+            UIManager.Instance.TogglePlaygameScreen(false);
         }
     }
 

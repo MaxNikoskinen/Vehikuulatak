@@ -17,5 +17,8 @@ public class LoadLevel : MonoBehaviour
         transitionAnim.SetTrigger("end");
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(sceneName);
+        GameManager.Instance.Money += 1000;
+        PlayerPrefs.SetInt("money", GameManager.Instance.Money);
+        UIManager.Instance.UpdateMoneyText(GameManager.Instance.Money);
     }
 }

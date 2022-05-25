@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+/*
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
         {
             motorSoundEffect.Play();
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Z))
         {
             shootingSoundEffect.Play();
-        }
+        }*/
     }
 
     //Method for taking damage

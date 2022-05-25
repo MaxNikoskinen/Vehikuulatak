@@ -26,5 +26,8 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+        GameManager.Instance.Money += 100;
+        PlayerPrefs.SetInt("money", GameManager.Instance.Money);
+        UIManager.Instance.UpdateMoneyText(GameManager.Instance.Money);
     }
 }

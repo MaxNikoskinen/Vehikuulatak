@@ -5,21 +5,24 @@ using UnityEngine;
 public class RayCastWeapon : MonoBehaviour
 {
     public Transform firePoint;
-    public int damage = 40;
+    int damage;
     public GameObject impactEffect;
     public LineRenderer lineRenderer;
     public AudioSource audioSource;
     public AudioClip shootingAudioClip;
-
+    private float shootingDelay = 0f;
+    public float shootingSpeed = 0.5f;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Z))
+        damage = GameManager.Instance.GetDamage();
+        if (Input.GetKey(KeyCode.Z) /*&& (Time.time >= shootingDelay)*/)
         {
            StartCoroutine (Shoot());
             audioSource.PlayOneShot(shootingAudioClip);
+            shootingDelay = Time.time + 1f / shootingSpeed;
         }
-        
+
     }
 
     IEnumerator Shoot ()

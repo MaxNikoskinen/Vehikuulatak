@@ -7,7 +7,7 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class CustomRotate : MonoBehaviour
 {
-    public float speed = 1f;
+    float speed = 1f;
     private float spin;
     private Rigidbody2D rb;
 
@@ -19,6 +19,7 @@ public class CustomRotate : MonoBehaviour
 
     void Update()
     {
+        speed = GameManager.Instance.GetSpeed();
         //Detecs if player wants to move
         if (Input.GetKey(KeyCode.RightArrow))
         {

@@ -8,8 +8,15 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private bool is3d;
+    
+    private float carSpeed = 2;
+    private int money = 300;
+    private int damage = 40;
+    private int currentCar = 0;
 
     private GameObject playerReference;
+
+
 
     //Poistu pelistä metodi, sulkee pelin
     public void ExitGame()
@@ -32,6 +39,12 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         randomValue = Random.Range(0, 10000);
+        carSpeed = PlayerPrefs.GetFloat("speed", carSpeed);
+        UIManager.Instance.UpdateSpeedText(carSpeed);
+        money = PlayerPrefs.GetInt("money", money);
+        UIManager.Instance.UpdateMoneyText(money);
+        damage = PlayerPrefs.GetInt("damage", damage);
+        UIManager.Instance.UpdateDamageText(damage);
     }
 
     private void Update()
@@ -124,5 +137,92 @@ public class GameManager : Singleton<GameManager>
     public bool GetIs3d()
     {
         return is3d;
+    }
+
+    public float GetSpeed()
+    {
+        return carSpeed;
+    }
+
+    public int GetDamage()
+    {
+        return damage;
+    }
+
+    public void RaiseSpeed()
+    {
+        if(carSpeed < 10 && money >= 50)
+        {
+            carSpeed += 0.5f;
+            UIManager.Instance.UpdateSpeedText(carSpeed);
+            PlayerPrefs.SetFloat("speed", carSpeed);
+            money -= 50;
+            PlayerPrefs.SetInt("money", money);
+            UIManager.Instance.UpdateMoneyText(money);
+        }
+    }
+
+    public void LowerSpeed()
+    {
+        if(carSpeed > 0.5)
+        {
+            carSpeed -= 0.5f;
+            UIManager.Instance.UpdateSpeedText(carSpeed);
+            PlayerPrefs.SetFloat("speed", carSpeed);
+            money += 50;
+            PlayerPrefs.SetInt("money", money);
+            UIManager.Instance.UpdateMoneyText(money);
+        }
+    }
+
+    public void RaiseDamage()
+    {
+        if (damage < 100 && money >= 50)
+        {
+            damage += 5;
+            UIManager.Instance.UpdateDamageText(damage);
+            PlayerPrefs.SetInt("damage", damage);
+            money -= 50;
+            PlayerPrefs.SetInt("money", money);
+            UIManager.Instance.UpdateMoneyText(money);
+        }
+    }
+
+    public void LowerDamage()
+    {
+        if (damage > 10)
+        {
+            damage -= 5;
+            UIManager.Instance.UpdateDamageText(damage);
+            PlayerPrefs.SetInt("speed", damage);
+            money += 50;
+            PlayerPrefs.SetInt("money", money);
+            UIManager.Instance.UpdateMoneyText(money);
+        }
+    }
+
+    public int Money
+    {
+        get
+        {
+            return money;
+        }
+        set
+        {
+            money = value;
+        }
+    }
+
+    public int GetCurrentCar
+    {
+        get
+        {
+            return currentCar;
+        }
+    }
+
+    public void changecar(int value)
+    {
+        currentCar = value;
     }
 }
